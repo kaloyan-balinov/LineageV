@@ -1,0 +1,39 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://cenkh7r7ry6ti"]
+
+[ext_resource type="FontFile" uid="uid://ia6x21hcj83" path="res://Assets/Fonts/Inter_18pt-Bold.ttf" id="1_vnygf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrb0q"]
+content_margin_top = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.18065593, 0.17557672, 0.1704964, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njkel"]
+content_margin_top = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.12955844, 0.1295585, 0.12955838, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sjhyu"]
+content_margin_top = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.32376572, 0.31699505, 0.30920115, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 5
+
+[resource]
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_vnygf")
+Button/styles/hover = SubResource("StyleBoxFlat_yrb0q")
+Button/styles/normal = SubResource("StyleBoxFlat_njkel")
+Button/styles/pressed = SubResource("StyleBoxFlat_sjhyu")
