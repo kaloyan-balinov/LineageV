@@ -1,0 +1,259 @@
+[gd_scene load_steps=10 format=3 uid="uid://bu8uk2xeggs16"]
+
+[ext_resource type="Script" uid="uid://crhxips4v6upa" path="res://Scenes/ViewMode/slides_overview.gd" id="1_u4ygf"]
+[ext_resource type="FontFile" uid="uid://dkgb8uqx3oo7j" path="res://Assets/Fonts/SF Pro/SF-Pro.ttf" id="2_swwer"]
+[ext_resource type="FontFile" uid="uid://bbahquip277rr" path="res://Assets/Fonts/Inter-VariableFont_opsz,wght.ttf" id="3_k2o7g"]
+[ext_resource type="FontFile" uid="uid://ia6x21hcj83" path="res://Assets/Fonts/Inter_18pt-Bold.ttf" id="4_d3rqo"]
+
+[sub_resource type="Theme" id="Theme_swwer"]
+default_font = ExtResource("2_swwer")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8xpo"]
+bg_color = Color(0.808998, 0.808998, 0.808998, 1)
+border_width_left = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6rns"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+
+[sub_resource type="Theme" id="Theme_k2o7g"]
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/styles/hover = SubResource("StyleBoxFlat_q8xpo")
+Button/styles/normal = SubResource("StyleBoxFlat_v6rns")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_votnd"]
+size = Vector2(399, 614)
+
+[node name="Panel" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u4ygf")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 45.0
+offset_right = 640.0
+offset_bottom = 706.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(600, 650)
+layout_mode = 2
+
+[node name="SlideRoot" type="Node" parent="."]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Tabs" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 50.0
+theme = SubResource("Theme_swwer")
+
+[node name="ToolsTab" type="Button" parent="UI/Tabs"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 31.0
+theme = SubResource("Theme_k2o7g")
+theme_override_fonts/font = ExtResource("3_k2o7g")
+text = "Tools
+"
+
+[node name="EditTab" type="Button" parent="UI/Tabs"]
+layout_mode = 0
+offset_left = 320.0
+offset_right = 640.0
+offset_bottom = 31.0
+theme = SubResource("Theme_k2o7g")
+theme_override_fonts/font = ExtResource("3_k2o7g")
+toggle_mode = true
+text = "Edit
+"
+
+[node name="SlidesTab" type="Button" parent="UI/Tabs"]
+layout_mode = 0
+offset_left = 640.0
+offset_right = 960.0
+offset_bottom = 31.0
+theme = SubResource("Theme_k2o7g")
+theme_override_fonts/font = ExtResource("4_d3rqo")
+toggle_mode = true
+text = "Slides
+"
+
+[node name="PresentTab" type="Button" parent="UI/Tabs"]
+layout_mode = 0
+offset_left = 961.0
+offset_right = 1281.0
+offset_bottom = 31.0
+theme = SubResource("Theme_k2o7g")
+theme_override_fonts/font = ExtResource("3_k2o7g")
+toggle_mode = true
+text = "Present"
+
+[node name="sidebarContainer" type="Node2D" parent="UI"]
+z_index = 2
+position = Vector2(-360, 0)
+
+[node name="ColorRect" type="ColorRect" parent="UI/sidebarContainer"]
+z_index = -1
+offset_left = -38.0
+offset_top = -394.0
+offset_right = 360.0
+offset_bottom = 1087.0
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/sidebarContainer"]
+layout_direction = 2
+offset_left = -14.0
+offset_top = 101.0
+offset_right = 357.0
+offset_bottom = 612.0
+
+[node name="BackgroundSetter" type="Button" parent="UI/sidebarContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 53.52)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_k2o7g")
+theme_override_font_sizes/font_size = 19
+text = "Set Background"
+
+[node name="NewButton" type="Button" parent="UI/sidebarContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 53.52)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_k2o7g")
+theme_override_font_sizes/font_size = 19
+text = "New Member"
+
+[node name="NewConnection" type="Button" parent="UI/sidebarContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 53.52)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_k2o7g")
+theme_override_font_sizes/font_size = 19
+text = "New Connection"
+
+[node name="Attach a Slide" type="Button" parent="UI/sidebarContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 53.52)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_k2o7g")
+theme_override_font_sizes/font_size = 19
+text = "Attach Slide"
+
+[node name="Delete a Slide" type="Button" parent="UI/sidebarContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 53.52)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_k2o7g")
+theme_override_font_sizes/font_size = 19
+text = "Delete Slide"
+
+[node name="Export" type="Button" parent="UI/sidebarContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 53.52)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_k2o7g")
+theme_override_font_sizes/font_size = 19
+text = "Export"
+
+[node name="Save" type="Button" parent="UI/sidebarContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 53.52)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_k2o7g")
+theme_override_font_sizes/font_size = 19
+text = "Save"
+
+[node name="open" type="Button" parent="UI/sidebarContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 53.52)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_k2o7g")
+theme_override_font_sizes/font_size = 19
+text = "Open"
+
+[node name="Options" type="Button" parent="UI/sidebarContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 53.52)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_k2o7g")
+theme_override_font_sizes/font_size = 19
+text = "Options"
+
+[node name="Label" type="Label" parent="UI/sidebarContainer"]
+offset_left = -3.0
+offset_top = 27.0
+offset_right = 343.0
+offset_bottom = 90.0
+theme_override_fonts/font = ExtResource("4_d3rqo")
+theme_override_font_sizes/font_size = 51
+text = "Tools"
+horizontal_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="UI/sidebarContainer"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/sidebarContainer/Area2D"]
+visible = false
+position = Vector2(161.5, 307)
+shape = SubResource("RectangleShape2D_votnd")
+
+[node name="Back" type="Button" parent="UI/sidebarContainer"]
+offset_left = -12.0
+offset_top = 617.0
+offset_right = 358.0
+offset_bottom = 719.0
+theme_override_fonts/font = ExtResource("4_d3rqo")
+theme_override_font_sizes/font_size = 36
+text = "Back"
+
+[node name="FileDialog" type="FileDialog" parent="UI"]
+title = "Open a File or Directory"
+position = Vector2i(130, 160)
+size = Vector2i(894, 360)
+ok_button_text = "Open"
+file_mode = 3
+access = 2
+use_native_dialog = true
+
+[node name="NameInputWindow" type="Window" parent="UI"]
+title = "Input Member Name"
+initial_position = 1
+size = Vector2i(725, 105)
+visible = false
+content_scale_mode = 1
+
+[node name="LineEdit" type="LineEdit" parent="UI/NameInputWindow"]
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 721.0
+offset_bottom = 101.0
+placeholder_text = "Name"
+max_length = 395
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -154.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Version" type="Label" parent="UI/Control"]
+layout_mode = 0
+offset_right = 143.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(0.42365062, 0.42365065, 0.42365062, 1)
+theme_override_fonts/font = ExtResource("4_d3rqo")
+theme_override_font_sizes/font_size = 22
+text = "0.0.3.0 Alpha"
+
+[connection signal="pressed" from="UI/Tabs/EditTab" to="." method="_on_edit_tab_pressed"]
+[connection signal="pressed" from="UI/Tabs/PresentTab" to="." method="_on_present_tab_pressed"]

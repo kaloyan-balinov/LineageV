@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvh0q4jcp7n6g"]
+
+[ext_resource type="Texture2D" uid="uid://cif57axomutql" path="res://Assets/Misc/background.png" id="1_kv1lo"]
+[ext_resource type="Script" uid="uid://c3b2xqqt0cy55" path="res://Code/panCam.gd" id="2_3dv6b"]
+
+[node name="Presentation" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.641934, 0.641934, 0.641934, 1)
+show_behind_parent = true
+position = Vector2(639.889, 360.5)
+scale = Vector2(0.667593, 0.667593)
+texture = ExtResource("1_kv1lo")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+limit_smoothed = true
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+rotation_smoothing_speed = 2.5
+script = ExtResource("2_3dv6b")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]

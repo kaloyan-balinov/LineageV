@@ -1,0 +1,350 @@
+[gd_scene format=3 uid="uid://xmyuq0xlmp7d"]
+
+[ext_resource type="Texture2D" uid="uid://cm45jkxm80sfd" path="res://Assets/Misc/whiteBG.png" id="1_a1el8"]
+[ext_resource type="Script" uid="uid://c3b2xqqt0cy55" path="res://Code/panCam.gd" id="2_e576c"]
+[ext_resource type="FontFile" uid="uid://dkgb8uqx3oo7j" path="res://Assets/Fonts/SF Pro/SF-Pro.ttf" id="3_a1el8"]
+[ext_resource type="FontFile" uid="uid://bbahquip277rr" path="res://Assets/Fonts/Inter-VariableFont_opsz,wght.ttf" id="4_d2peb"]
+[ext_resource type="FontFile" uid="uid://ia6x21hcj83" path="res://Assets/Fonts/Inter_18pt-Bold.ttf" id="5_hg6ke"]
+[ext_resource type="Script" uid="uid://bm6x0ktu2d3cf" path="res://Scenes/ViewMode/presentation_manager.gd" id="6_e576c"]
+[ext_resource type="Script" uid="uid://csexhoiqaf5a8" path="res://Scenes/EditMode/manager_2d.gd" id="7_a1el8"]
+
+[sub_resource type="Theme" id="Theme_8ftoo"]
+default_font = ExtResource("3_a1el8")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a1el8"]
+size = Vector2(1290, 68)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a1el8"]
+bg_color = Color(0.808998, 0.808998, 0.808998, 1)
+border_width_left = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2peb"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+
+[sub_resource type="Theme" id="Theme_hg6ke"]
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/styles/hover = SubResource("StyleBoxFlat_a1el8")
+Button/styles/normal = SubResource("StyleBoxFlat_d2peb")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkrdp"]
+size = Vector2(399, 614)
+
+[sub_resource type="Animation" id="Animation_a1el8"]
+resource_name = "DynamicTabHide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Tabs:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1.5258749e-05),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -32)]
+}
+
+[sub_resource type="Animation" id="Animation_sjhyu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/sidebarContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-360, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/Tabs:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_njkel"]
+resource_name = "sidebarPopup"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/sidebarContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2.21914, 0.0915061),
+"update": 0,
+"values": [Vector2(-360, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q8xpo"]
+_data = {
+&"DynamicTabHide": SubResource("Animation_a1el8"),
+&"RESET": SubResource("Animation_sjhyu"),
+&"sidebarPopup": SubResource("Animation_njkel")
+}
+
+[node name="Presentation" type="Node2D" unique_id=1387100052]
+
+[node name="Background" type="CanvasLayer" parent="." unique_id=1674227645]
+layer = -1
+
+[node name="Sprite2D" type="TextureRect" parent="Background" unique_id=1840608554]
+show_behind_parent = true
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("1_a1el8")
+expand_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1080199806]
+zoom = Vector2(0.5, 0.5)
+limit_smoothed = true
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+rotation_smoothing_speed = 2.5
+script = ExtResource("2_e576c")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D" unique_id=1622466715]
+
+[node name="Control" type="Control" parent="Camera2D/CanvasLayer" unique_id=1483438085]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -154.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Version" type="Label" parent="Camera2D/CanvasLayer/Control" unique_id=1011089338]
+layout_mode = 0
+offset_right = 143.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(0.42365062, 0.42365065, 0.42365062, 1)
+theme_override_fonts/font = ExtResource("5_hg6ke")
+theme_override_font_sizes/font_size = 22
+text = "0.0.3.0 Alpha"
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1494426673]
+
+[node name="Tabs" type="Control" parent="UI" unique_id=771963532]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_8ftoo")
+
+[node name="Area2D" type="Area2D" parent="UI/Tabs" unique_id=2112983343]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Tabs/Area2D" unique_id=1935357863]
+position = Vector2(635, 24)
+shape = SubResource("RectangleShape2D_a1el8")
+
+[node name="ToolsTab" type="Button" parent="UI/Tabs" unique_id=1362800609]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 31.0
+theme = SubResource("Theme_hg6ke")
+theme_override_fonts/font = ExtResource("4_d2peb")
+text = "Tools
+"
+
+[node name="EditTab" type="Button" parent="UI/Tabs" unique_id=424255581]
+layout_mode = 0
+offset_left = 320.0
+offset_right = 640.0
+offset_bottom = 31.0
+theme = SubResource("Theme_hg6ke")
+theme_override_fonts/font = ExtResource("4_d2peb")
+text = "Edit
+"
+
+[node name="SlidesTab" type="Button" parent="UI/Tabs" unique_id=215095616]
+layout_mode = 0
+offset_left = 640.0
+offset_right = 960.0
+offset_bottom = 31.0
+theme = SubResource("Theme_hg6ke")
+theme_override_fonts/font = ExtResource("4_d2peb")
+text = "Slides
+"
+
+[node name="PresentTab" type="Button" parent="UI/Tabs" unique_id=890037767]
+layout_mode = 0
+offset_left = 961.0
+offset_right = 1281.0
+offset_bottom = 31.0
+theme = SubResource("Theme_hg6ke")
+theme_override_fonts/font = ExtResource("5_hg6ke")
+text = "Present"
+
+[node name="sidebarContainer" type="Node2D" parent="UI" unique_id=1955528323]
+z_index = 2
+position = Vector2(-360, 0)
+
+[node name="ColorRect" type="ColorRect" parent="UI/sidebarContainer" unique_id=977261155]
+z_index = -1
+offset_left = -38.0
+offset_top = -394.0
+offset_right = 360.0
+offset_bottom = 1087.0
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/sidebarContainer" unique_id=263504879]
+layout_direction = 2
+offset_left = -14.0
+offset_top = 101.0
+offset_right = 357.0
+offset_bottom = 612.0
+
+[node name="BackgroundSetter" type="Button" parent="UI/sidebarContainer/VBoxContainer" unique_id=1574560081]
+custom_minimum_size = Vector2(0, 53.52)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_d2peb")
+theme_override_font_sizes/font_size = 19
+text = "Set Background"
+
+[node name="NewButton" type="Button" parent="UI/sidebarContainer/VBoxContainer" unique_id=1026442922]
+custom_minimum_size = Vector2(0, 53.52)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_d2peb")
+theme_override_font_sizes/font_size = 19
+text = "New Member"
+
+[node name="NewConnection" type="Button" parent="UI/sidebarContainer/VBoxContainer" unique_id=1359756470]
+custom_minimum_size = Vector2(0, 53.52)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_d2peb")
+theme_override_font_sizes/font_size = 19
+text = "New Connection"
+
+[node name="Attach a Slide" type="Button" parent="UI/sidebarContainer/VBoxContainer" unique_id=1758319038]
+custom_minimum_size = Vector2(0, 53.52)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_d2peb")
+theme_override_font_sizes/font_size = 19
+text = "Attach Slide"
+
+[node name="Delete a Slide" type="Button" parent="UI/sidebarContainer/VBoxContainer" unique_id=2138886286]
+custom_minimum_size = Vector2(0, 53.52)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_d2peb")
+theme_override_font_sizes/font_size = 19
+text = "Delete Slide"
+
+[node name="Export" type="Button" parent="UI/sidebarContainer/VBoxContainer" unique_id=2110760980]
+custom_minimum_size = Vector2(0, 53.52)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_d2peb")
+theme_override_font_sizes/font_size = 19
+text = "Export"
+
+[node name="Save" type="Button" parent="UI/sidebarContainer/VBoxContainer" unique_id=311765419]
+custom_minimum_size = Vector2(0, 53.52)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_d2peb")
+theme_override_font_sizes/font_size = 19
+text = "Save"
+
+[node name="open" type="Button" parent="UI/sidebarContainer/VBoxContainer" unique_id=734874579]
+custom_minimum_size = Vector2(0, 53.52)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_d2peb")
+theme_override_font_sizes/font_size = 19
+text = "Open"
+
+[node name="Options" type="Button" parent="UI/sidebarContainer/VBoxContainer" unique_id=256721896]
+custom_minimum_size = Vector2(0, 53.52)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_d2peb")
+theme_override_font_sizes/font_size = 19
+text = "Options"
+
+[node name="Label" type="Label" parent="UI/sidebarContainer" unique_id=1769361768]
+offset_left = -3.0
+offset_top = 27.0
+offset_right = 343.0
+offset_bottom = 90.0
+theme_override_fonts/font = ExtResource("5_hg6ke")
+theme_override_font_sizes/font_size = 51
+text = "Tools"
+horizontal_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="UI/sidebarContainer" unique_id=161845072]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/sidebarContainer/Area2D" unique_id=346896496]
+visible = false
+position = Vector2(161.5, 307)
+shape = SubResource("RectangleShape2D_wkrdp")
+
+[node name="Back" type="Button" parent="UI/sidebarContainer" unique_id=1459463274]
+offset_left = -12.0
+offset_top = 617.0
+offset_right = 358.0
+offset_bottom = 719.0
+theme_override_fonts/font = ExtResource("5_hg6ke")
+theme_override_font_sizes/font_size = 36
+text = "Back"
+
+[node name="FileDialog" type="FileDialog" parent="UI" unique_id=21871218]
+title = "Open a File"
+initial_position = 5
+size = Vector2i(894, 360)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+use_native_dialog = true
+hidden_files_toggle_enabled = false
+
+[node name="NameInputWindow" type="Window" parent="UI" unique_id=303630427]
+oversampling_override = 1.0
+title = "Input Member Name"
+initial_position = 1
+size = Vector2i(725, 105)
+visible = false
+content_scale_mode = 1
+
+[node name="LineEdit" type="LineEdit" parent="UI/NameInputWindow" unique_id=1998032913]
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 721.0
+offset_bottom = 101.0
+placeholder_text = "Name"
+max_length = 395
+
+[node name="PresentationManager" type="Node" parent="." unique_id=284446272]
+script = ExtResource("6_e576c")
+
+[node name="Manager2D" type="Node2D" parent="." unique_id=1915922513]
+script = ExtResource("7_a1el8")
+
+[node name="LineContainer" type="Node2D" parent="." unique_id=1071177677]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=765145640]
+libraries/ = SubResource("AnimationLibrary_q8xpo")
+
+[connection signal="area_entered" from="UI/Tabs/Area2D" to="PresentationManager" method="_on_area_2d_area_entered"]
+[connection signal="mouse_shape_entered" from="UI/Tabs/Area2D" to="PresentationManager" method="_on_area_2d_mouse_shape_entered"]
+[connection signal="pressed" from="UI/Tabs/EditTab" to="PresentationManager" method="_on_edit_tab_pressed"]
+[connection signal="pressed" from="UI/Tabs/SlidesTab" to="PresentationManager" method="_on_slides_tab_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="PresentationManager" method="_on_animation_player_animation_finished"]

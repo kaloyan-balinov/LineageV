@@ -1,0 +1,136 @@
+[gd_scene load_steps=6 format=3 uid="uid://g206pn7147ju"]
+
+[ext_resource type="Script" uid="uid://h1m8qn53t57a" path="res://Scenes/SlideMode/slide_root.gd" id="1_vigl6"]
+[ext_resource type="Shader" uid="uid://bbumwrfajrirt" path="res://Scenes/SlideMode/Blur.gdshader" id="2_kor41"]
+[ext_resource type="Script" uid="uid://bt5udwtytadv7" path="res://Scenes/SlideMode/slide_manager.gd" id="2_y3pp8"]
+[ext_resource type="Texture2D" uid="uid://dg4g0ojgbmdjj" path="res://Assets/Misc/black.png" id="3_j8xv4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wr7sh"]
+shader = ExtResource("2_kor41")
+shader_parameter/blur = 5.3450002538875
+shader_parameter/warp_intensity = 1.0
+shader_parameter/strength_x = 12.0
+shader_parameter/strength_y = 12.0
+shader_parameter/offset_x = 0.0
+shader_parameter/offset_y = 0.0
+shader_parameter/corner_radius = 0.0
+shader_parameter/edge_smoothness = 1.0
+shader_parameter/tint = Color(0, 0, 0, 0.5411765)
+shader_parameter/edge_highlight = Color(1, 1, 1, 0.3)
+shader_parameter/edge_width = 1.5
+shader_parameter/chromatic_strength = 5.0
+
+[node name="templateSlide" type="CanvasLayer"]
+
+[node name="SlideRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_vigl6")
+metadata/_edit_use_anchors_ = true
+
+[node name="BackgroundImage" type="Sprite2D" parent="SlideRoot"]
+modulate = Color(1, 1, 1, 0.39215687)
+self_modulate = Color(1, 1, 1, 0.39215687)
+show_behind_parent = true
+material = SubResource("ShaderMaterial_wr7sh")
+position = Vector2(640, 360)
+texture = ExtResource("3_j8xv4")
+
+[node name="Background" type="CanvasLayer" parent="SlideRoot"]
+layer = -1
+
+[node name="Info" type="TextEdit" parent="SlideRoot"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 150.0
+offset_right = 655.0
+offset_bottom = 615.0
+theme_override_font_sizes/font_size = 25
+placeholder_text = "Input family member information"
+metadata/_edit_use_anchors_ = true
+
+[node name="MemberName" type="TextEdit" parent="SlideRoot"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 38.0
+offset_right = 822.0
+offset_bottom = 140.0
+theme_override_font_sizes/font_size = 52
+placeholder_text = "Input family member name"
+metadata/_edit_use_anchors_ = true
+
+[node name="backButton" type="Button" parent="SlideRoot"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 618.0
+offset_right = 293.0
+offset_bottom = 696.0
+theme_override_font_sizes/font_size = 48
+text = "Back"
+metadata/_edit_use_anchors_ = true
+
+[node name="slideManager" type="Node" parent="SlideRoot"]
+script = ExtResource("2_y3pp8")
+
+[node name="ButtonForNextImage" type="Button" parent="SlideRoot"]
+layout_mode = 0
+offset_left = 1203.0
+offset_top = 145.0
+offset_right = 1267.0
+offset_bottom = 610.0
+theme_override_font_sizes/font_size = 71
+text = ">"
+
+[node name="Control" type="Control" parent="SlideRoot"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 736.0
+offset_top = 149.0
+offset_right = 1195.0
+offset_bottom = 621.0
+
+[node name="TextureRect" type="TextureRect" parent="SlideRoot/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ButtonForImage" type="Button" parent="SlideRoot/Control/TextureRect"]
+show_behind_parent = true
+layout_mode = 0
+offset_top = -4.0
+offset_right = 460.0
+offset_bottom = 461.0
+theme_override_font_sizes/font_size = 226
+text = "+"
+
+[node name="ButtonForPreviousImage" type="Button" parent="SlideRoot"]
+layout_mode = 0
+offset_left = 665.0
+offset_top = 145.0
+offset_right = 729.0
+offset_bottom = 610.0
+theme_override_font_sizes/font_size = 71
+text = "<"
+
+[node name="FileDialog" type="FileDialog" parent="."]
+oversampling_override = 1.0
+title = "Open a File"
+position = Vector2i(130, 160)
+size = Vector2i(894, 360)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+use_native_dialog = true
+
+[connection signal="pressed" from="SlideRoot/backButton" to="SlideRoot/slideManager" method="_on_back_button_pressed"]
+[connection signal="pressed" from="SlideRoot/ButtonForNextImage" to="SlideRoot/slideManager" method="_on_button_for_next_image_pressed"]
+[connection signal="pressed" from="SlideRoot/Control/TextureRect/ButtonForImage" to="SlideRoot/slideManager" method="_on_button_for_image_pressed"]
+[connection signal="pressed" from="SlideRoot/ButtonForPreviousImage" to="SlideRoot/slideManager" method="_on_button_for_previous_image_pressed"]
+[connection signal="file_selected" from="FileDialog" to="SlideRoot/slideManager" method="_on_file_dialog_file_selected"]
